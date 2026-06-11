@@ -1,1 +1,87 @@
-const c=document.getElementById('scratch'),x=c.getContext('2d'),b=document.getElementById('scratchBox');c.width=b.clientWidth;c.height=b.clientHeight;x.fillStyle='#b9bec5';x.fillRect(0,0,c.width,c.height);x.fillStyle='#555';x.font='bold 28px Arial';x.textAlign='center';x.fillText('🪙 CÀO TẠI ĐÂY',c.width/2,c.height/2);let d=false;function p(e){const r=c.getBoundingClientRect();return{x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}}function erase(e){if(!d)return;e.preventDefault();x.globalCompositeOperation='destination-out';let m=p(e);x.beginPath();x.arc(m.x,m.y,22,0,Math.PI*2);x.fill();let data=x.getImageData(0,0,c.width,c.height).data,clr=0;for(let i=3;i<data.length;i+=4){if(data[i]==0)clr++;}if(clr/(c.width*c.height)>0.45)c.style.display='none';}c.onmousedown=()=>d=true;c.onmouseup=()=>d=false;c.onmousemove=erase;c.ontouchstart=()=>d=true;c.ontouchend=()=>d=false;c.ontouchmove=erase;
+// ==============================
+// SCRATCH CARD
+// Part 1 - Variables
+// ==============================
+
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d", {
+    willReadFrequently: true
+});
+
+const wrapper = document.querySelector(".scratch-wrapper");
+const hiddenContent = document.getElementById("hiddenContent");
+
+let isDrawing = false;
+let revealed = false;
+// ==============================
+// Part 2 - Resize Canvas
+// ==============================
+
+function resizeCanvas() {
+
+    const rect = wrapper.getBoundingClientRect();
+
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", () => {
+
+    resizeCanvas();
+    drawCover();
+
+});
+// ==============================
+// Part 3 - Draw Cover
+// ==============================
+
+function drawCover() {
+
+    const gradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    gradient.addColorStop(0, "#7C3AED");
+    gradient.addColorStop(0.5, "#EC4899");
+    gradient.addColorStop(1, "#FBBF24");
+
+    ctx.globalCompositeOperation = "source-over";
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    ctx.fillStyle = "rgba(255,255,255,.95)";
+
+    ctx.font = "bold 30px Be Vietnam Pro";
+
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+        "CÀO THẺ NÀY",
+        canvas.width / 2,
+        canvas.height / 2 - 10
+    );
+
+    ctx.font = "20px Be Vietnam Pro";
+
+    ctx.fillText(
+        "ĐỂ NHẬN THÔNG ĐIỆP",
+        canvas.width / 2,
+        canvas.height / 2 + 35
+    );
+
+}
+
+drawCover();
