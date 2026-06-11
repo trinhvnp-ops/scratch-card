@@ -4,525 +4,242 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
-    font-family:'Be Vietnam Pro',sans-serif;
+    font-family:
+        Inter,
+        "Segoe UI",
+        sans-serif;
 }
 
 body{
+    position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(
-        135deg,
-        #5B21B6 0%,
-        #7C3AED 25%,
-        #EC4899 60%,
-        #FBBF24 100%
-    );
-    background-size:300% 300%;
-    animation:bgMove 12s ease infinite;
-}
-
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    background:
+        linear-gradient(
+            135deg,
+            #6A11CB 0%,
+            #C314FF 45%,
+            #FFB347 100%
+        );
 }
 
 .background{
-    width:100%;
-    height:100%;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    position:fixed;
+    inset:0;
     overflow:hidden;
+    pointer-events:none;
 }
 
-.blur{
+.background::before,
+.background::after{
+    content:"";
     position:absolute;
+    width:500px;
+    height:500px;
     border-radius:50%;
-    filter:blur(100px);
+    filter:blur(90px);
     opacity:.45;
 }
 
-.blur1{
-    width:300px;
-    height:300px;
-    background:#FFD54F;
-    top:-80px;
-    left:-80px;
+.background::before{
+    background:#ffffff;
+    top:-120px;
+    left:-150px;
 }
 
-.blur2{
-    width:350px;
-    height:350px;
-    background:#FF5FB2;
-    bottom:-120px;
-    right:-120px;
+.background::after{
+    background:#ffd76a;
+    bottom:-180px;
+    right:-150px;
 }
 
-.blur3{
-    width:260px;
-    height:260px;
-    background:#9D4EDD;
-    top:20%;
-    right:12%;
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:24px;
 }
 
 .card{
-
     position:relative;
-
-    width:430px;
-
-    max-width:92vw;
-
-    padding:45px;
-
-    border-radius:32px;
-
-    background:rgba(255,255,255,.18);
-
+    width:min(430px,100%);
+    padding:36px 28px 42px;
+    border-radius:28px;
     backdrop-filter:blur(22px);
-
-    border:1px solid rgba(255,255,255,.25);
-
+    -webkit-backdrop-filter:blur(22px);
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
     box-shadow:
-
-    0 25px 60px rgba(0,0,0,.25),
-
-    inset 0 1px 0 rgba(255,255,255,.3);
-
+        0 25px 60px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.4);
     text-align:center;
-
 }
 
-.badge{
-
-    display:inline-block;
-
-    padding:10px 20px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.22);
-
-    color:white;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    letter-spacing:1px;
-
-    margin-bottom:25px;
-
-}
-
-h1{
-
-    color:white;
-
-    font-size:38px;
-
-    line-height:1.15;
-
+.card h1{
+    color:#fff;
+    font-size:30px;
+    line-height:1.35;
     font-weight:800;
-
+    margin-bottom:30px;
+    text-shadow:0 4px 12px rgba(0,0,0,.18);
 }
 
-.subtitle{
-
-    color:white;
-
-    opacity:.9;
-
-    margin-top:15px;
-
-    line-height:1.6;
-
-    font-size:17px;
-
-}
-/* ===========================
-   SCRATCH CARD
-=========================== */
-
-.scratch-wrapper{
-
-    margin-top:35px;
-
+#scratch-wrapper{
     position:relative;
-
     width:100%;
+    max-width:340px;
+    margin:auto;
+}
 
-    height:260px;
+.reward{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    border-radius:22px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.95),
+            rgba(255,244,223,.92)
+        );
+    text-align:center;
+}
 
-    border-radius:24px;
+.reward .emoji{
+    font-size:54px;
+    margin-bottom:16px;
+}
 
-    overflow:hidden;
+.reward h2{
+    color:#5a189a;
+    font-size:26px;
+    margin-bottom:12px;
+    font-weight:800;
+}
 
-    background:white;
-
-    box-shadow:
-
-        inset 0 0 0 2px rgba(255,255,255,.4),
-
-        0 20px 40px rgba(0,0,0,.15);
-
+.reward p{
+    color:#555;
+    font-size:18px;
 }
 
 #scratchCanvas{
-
-    position:absolute;
-
-    inset:0;
-
+    position:relative;
+    display:block;
     width:100%;
-
-    height:100%;
-
-    z-index:5;
-
+    height:230px;
+    border-radius:22px;
     cursor:pointer;
-
+    touch-action:none;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.18);
 }
 
-.scratch-text{
-
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    z-index:4;
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:700;
-
-    line-height:1.7;
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        #6D28D9,
-
-        #EC4899,
-
-        #FBBF24
-
-    );
-
-}
-
-.scratch-text b{
-
-    font-size:30px;
-
-    letter-spacing:1px;
-
-}
-
-.hidden-content{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:1;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:white;
-
-    padding:30px;
-
-}
-
-.hidden-content h2{
-
-    font-size:48px;
-
-}
-
-.hidden-content h3{
-
-    margin-top:10px;
-
-    font-size:28px;
-
-    color:#5B21B6;
-
-}
-
-.hidden-content p{
-
-    margin-top:12px;
-
-    color:#666;
-
-    font-size:17px;
-
-    line-height:1.6;
-
-}
-
-/* ===========================
-   BUTTON
-=========================== */
-
-.calendar-btn{
-
-    margin-top:28px;
-
+#joinBtn{
     display:inline-flex;
-
-    align-items:center;
-
     justify-content:center;
-
-    padding:16px 30px;
-
-    border-radius:999px;
-
-    background:linear-gradient(
-
-        135deg,
-
-        #6D28D9,
-
-        #EC4899,
-
-        #FBBF24
-
-    );
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:700;
-
-    font-size:16px;
-
-    transition:.3s;
-
-    box-shadow:
-
-        0 10px 25px rgba(236,72,153,.35);
-
-}
-
-.calendar-btn:hover{
-
-    transform:translateY(-4px) scale(1.03);
-
-    box-shadow:
-
-        0 18px 35px rgba(236,72,153,.45);
-
-}
-/* ===========================
-   ANIMATION
-=========================== */
-
-.hidden-content{
-    opacity:0;
-    transform:scale(.95);
-    transition:all .45s ease;
-}
-
-.hidden-content.show{
-    opacity:1;
-    transform:scale(1);
-}
-
-.card{
-    animation:floatCard 5s ease-in-out infinite;
-}
-
-@keyframes floatCard{
-    0%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-8px);
-    }
-    100%{
-        transform:translateY(0);
-    }
-}
-
-/* Glow */
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-2px;
-
-    border-radius:34px;
-
-    padding:2px;
-
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.7),
-        rgba(255,255,255,0),
-        rgba(255,255,255,.7)
-    );
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask-composite:exclude;
-
-    pointer-events:none;
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media(max-width:768px){
-
-.card{
-
-    width:92%;
-
-    padding:30px;
-
-}
-
-h1{
-
-    font-size:30px;
-
-}
-
-.subtitle{
-
-    font-size:15px;
-
-}
-
-.scratch-wrapper{
-
-    height:220px;
-
-}
-
-.scratch-text{
-
-    font-size:20px;
-
-}
-
-.scratch-text b{
-
-    font-size:25px;
-
-}
-
-.hidden-content h3{
-
-    font-size:22px;
-
-}
-
-.calendar-btn{
-
+    align-items:center;
     width:100%;
+    margin-top:28px;
+    padding:18px 20px;
+    border-radius:18px;
+    background:
+        linear-gradient(
+            90deg,
+            #6A11CB,
+            #FF4FB3,
+            #FFC34D
+        );
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+    letter-spacing:.4px;
+    transition:.28s;
+    box-shadow:
+        0 12px 24px rgba(0,0,0,.18);
+}
 
-    font-size:15px;
+#joinBtn:hover{
+    transform:translateY(-2px) scale(1.02);
+}
+
+.hidden{
+    display:none !important;
+}
+
+#confettiCanvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:999;
+}
+
+@media (max-width:768px){
+
+    body{
+        overflow:auto;
+    }
+
+    .container{
+        padding:20px;
+    }
+
+    .card{
+        padding:28px 22px 34px;
+    }
+
+    .card h1{
+        font-size:24px;
+        margin-bottom:24px;
+    }
+
+    #scratchCanvas{
+        height:200px;
+    }
+
+    .reward h2{
+        font-size:22px;
+    }
+
+    .reward p{
+        font-size:16px;
+    }
+
+    #joinBtn{
+        font-size:15px;
+        padding:16px;
+    }
 
 }
 
-}
+@media (max-width:420px){
 
-/* ===========================
-   SMALL PHONE
-=========================== */
+    .card{
+        border-radius:24px;
+    }
 
-@media(max-width:430px){
+    #scratchCanvas{
+        height:180px;
+    }
 
-.card{
+    .reward .emoji{
+        font-size:46px;
+    }
 
-    padding:22px;
-
-}
-
-.badge{
-
-    font-size:12px;
-
-}
-
-h1{
-
-    font-size:26px;
-
-}
-
-.subtitle{
-
-    font-size:14px;
-
-}
-
-.scratch-wrapper{
-
-    height:200px;
-
-}
-
-.hidden-content h2{
-
-    font-size:40px;
-
-}
-
-.hidden-content h3{
-
-    font-size:20px;
-
-}
-
-.hidden-content p{
-
-    font-size:15px;
-
-}
+    .reward h2{
+        font-size:20px;
+    }
 
 }
