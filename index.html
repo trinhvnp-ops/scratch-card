@@ -1,114 +1,61 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Risk hơn Fix Fraud</title>
+    <title>Workshop Scratch Card</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
-<div class="background">
+    <div class="background"></div>
 
-<div class="blur blur1"></div>
-<div class="blur blur2"></div>
-<div class="blur blur3"></div>
+    <main class="container">
 
-<div class="card">
+        <section class="card">
 
-<div class="badge">
-🛡️ WORKSHOP
-</div>
+            <h1>
+                🛡️<br>
+                PHÒNG RISK HƠN FIX FRAUD
+            </h1>
 
-<h1>
+            <div id="scratch-wrapper">
 
-PHÒNG RISK<br>
+                <div class="reward">
 
-HƠN FIX FRAUD
+                    <div class="emoji">🎉</div>
 
-</h1>
+                    <h2>Bạn đã mở khóa lời mời!</h2>
 
-<p class="subtitle">
+                    <p>Hẹn gặp bạn tại Workshop.</p>
 
-LÁ CHẮN VỮNG CHẮC<br>
+                </div>
 
-CHỐT KHÁCH VỮNG TÂM
+                <canvas id="scratchCanvas"></canvas>
 
-</p>
+            </div>
 
-<div class="scratch-wrapper">
+            <a
+                id="joinBtn"
+                class="hidden"
+                href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MTI3dGN2bWRlODAyYTRxMnR1bjUxYnIyYTAgdHJpbmgudm5wQHVyYm94LnZu&tmsrc=trinh.vnp%40urbox.vn"
+                target="_blank"
+            >
+                XÁC NHẬN THAM GIA SỰ KIỆN
+            </a>
 
-<div class="hidden-content" id="hiddenContent">
+        </section>
 
-<h2>
+    </main>
 
-🎉
+    <canvas id="confettiCanvas"></canvas>
 
-</h2>
-
-<h3>
-
-Hẹn gặp bạn tại Workshop!
-
-</h3>
-
-<p>
-
-Cảm ơn bạn đã xác nhận tham gia.
-
-</p>
-
-<a
-class="calendar-btn"
-href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MTI3dGN2bWRlODAyYTRxMnR1bjUxYnIyYTAgdHJpbmgudm5wQHVyYm94LnZu&tmsrc=trinh.vnp%40urbox.vn"
-target="_blank">
-
-XÁC NHẬN THAM GIA SỰ KIỆN
-
-</a>
-
-</div>
-
-<canvas id="scratchCanvas"></canvas>
-
-<div class="scratch-text">
-
-✨
-
-<br><br>
-
-<b>
-
-CÀO THẺ NÀY
-
-</b>
-
-<br>
-
-ĐỂ NHẬN
-
-THÔNG ĐIỆP
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
