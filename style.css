@@ -1,1 +1,528 @@
-body{margin:0;font-family:Arial,sans-serif;background:#0f172a;display:flex;justify-content:center;align-items:center;height:100vh}.card{background:#1e293b;padding:30px;border-radius:20px;max-width:700px;text-align:center;color:#fff}#scratchBox{position:relative;width:600px;max-width:100%;height:260px}.subtitle{margin-bottom:20px}#message{position:absolute;inset:0;background:#fff;color:#111;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}canvas{position:absolute;inset:0;background:#b9bec5;border-radius:16px;cursor:pointer}.btn{margin-top:20px;padding:14px 22px;background:#2563eb;color:#fff;text-decoration:none;border-radius:10px;font-weight:bold}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:'Be Vietnam Pro',sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(
+        135deg,
+        #5B21B6 0%,
+        #7C3AED 25%,
+        #EC4899 60%,
+        #FBBF24 100%
+    );
+    background-size:300% 300%;
+    animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.background{
+    width:100%;
+    height:100%;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.blur{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.45;
+}
+
+.blur1{
+    width:300px;
+    height:300px;
+    background:#FFD54F;
+    top:-80px;
+    left:-80px;
+}
+
+.blur2{
+    width:350px;
+    height:350px;
+    background:#FF5FB2;
+    bottom:-120px;
+    right:-120px;
+}
+
+.blur3{
+    width:260px;
+    height:260px;
+    background:#9D4EDD;
+    top:20%;
+    right:12%;
+}
+
+.card{
+
+    position:relative;
+
+    width:430px;
+
+    max-width:92vw;
+
+    padding:45px;
+
+    border-radius:32px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.25),
+
+    inset 0 1px 0 rgba(255,255,255,.3);
+
+    text-align:center;
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:10px 20px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.22);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+
+}
+
+h1{
+
+    color:white;
+
+    font-size:38px;
+
+    line-height:1.15;
+
+    font-weight:800;
+
+}
+
+.subtitle{
+
+    color:white;
+
+    opacity:.9;
+
+    margin-top:15px;
+
+    line-height:1.6;
+
+    font-size:17px;
+
+}
+/* ===========================
+   SCRATCH CARD
+=========================== */
+
+.scratch-wrapper{
+
+    margin-top:35px;
+
+    position:relative;
+
+    width:100%;
+
+    height:260px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:white;
+
+    box-shadow:
+
+        inset 0 0 0 2px rgba(255,255,255,.4),
+
+        0 20px 40px rgba(0,0,0,.15);
+
+}
+
+#scratchCanvas{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    z-index:5;
+
+    cursor:pointer;
+
+}
+
+.scratch-text{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    z-index:4;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    line-height:1.7;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #6D28D9,
+
+        #EC4899,
+
+        #FBBF24
+
+    );
+
+}
+
+.scratch-text b{
+
+    font-size:30px;
+
+    letter-spacing:1px;
+
+}
+
+.hidden-content{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:white;
+
+    padding:30px;
+
+}
+
+.hidden-content h2{
+
+    font-size:48px;
+
+}
+
+.hidden-content h3{
+
+    margin-top:10px;
+
+    font-size:28px;
+
+    color:#5B21B6;
+
+}
+
+.hidden-content p{
+
+    margin-top:12px;
+
+    color:#666;
+
+    font-size:17px;
+
+    line-height:1.6;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.calendar-btn{
+
+    margin-top:28px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:16px 30px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #6D28D9,
+
+        #EC4899,
+
+        #FBBF24
+
+    );
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    transition:.3s;
+
+    box-shadow:
+
+        0 10px 25px rgba(236,72,153,.35);
+
+}
+
+.calendar-btn:hover{
+
+    transform:translateY(-4px) scale(1.03);
+
+    box-shadow:
+
+        0 18px 35px rgba(236,72,153,.45);
+
+}
+/* ===========================
+   ANIMATION
+=========================== */
+
+.hidden-content{
+    opacity:0;
+    transform:scale(.95);
+    transition:all .45s ease;
+}
+
+.hidden-content.show{
+    opacity:1;
+    transform:scale(1);
+}
+
+.card{
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
+/* Glow */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:34px;
+
+    padding:2px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.7),
+        rgba(255,255,255,0),
+        rgba(255,255,255,.7)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.card{
+
+    width:92%;
+
+    padding:30px;
+
+}
+
+h1{
+
+    font-size:30px;
+
+}
+
+.subtitle{
+
+    font-size:15px;
+
+}
+
+.scratch-wrapper{
+
+    height:220px;
+
+}
+
+.scratch-text{
+
+    font-size:20px;
+
+}
+
+.scratch-text b{
+
+    font-size:25px;
+
+}
+
+.hidden-content h3{
+
+    font-size:22px;
+
+}
+
+.calendar-btn{
+
+    width:100%;
+
+    font-size:15px;
+
+}
+
+}
+
+/* ===========================
+   SMALL PHONE
+=========================== */
+
+@media(max-width:430px){
+
+.card{
+
+    padding:22px;
+
+}
+
+.badge{
+
+    font-size:12px;
+
+}
+
+h1{
+
+    font-size:26px;
+
+}
+
+.subtitle{
+
+    font-size:14px;
+
+}
+
+.scratch-wrapper{
+
+    height:200px;
+
+}
+
+.hidden-content h2{
+
+    font-size:40px;
+
+}
+
+.hidden-content h3{
+
+    font-size:20px;
+
+}
+
+.hidden-content p{
+
+    font-size:15px;
+
+}
+
+}
